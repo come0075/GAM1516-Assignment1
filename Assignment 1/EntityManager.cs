@@ -45,7 +45,7 @@ namespace GAM1516_Assignment_1
 
             for (int i = 0; i < __maxEntities; i++)
             {
-                __entityArray[i] = new GameEntity("", i);
+                __entityArray[i] = new GameEntity();
             }
         }
         public EntityManager(int _maxEntities)
@@ -54,7 +54,7 @@ namespace GAM1516_Assignment_1
             __entityArray = new GameEntity[_maxEntities];
             for (int i = 0; i < _maxEntities; i++)
             {
-                EntityArray[i] = new GameEntity("", i);
+                EntityArray[i] = new GameEntity();
             }
         }
         #endregion
@@ -70,7 +70,7 @@ namespace GAM1516_Assignment_1
                     return;
                 }
             }
-            Console.WriteLine("Unable to add another entry; Max Entries reached.\n");
+            Console.WriteLine("\a\a\aError: Max Entries reached, cannot add more.\n");
         }
 
         public void RemoveEntry(GameEntity _removeEntry)
@@ -79,17 +79,15 @@ namespace GAM1516_Assignment_1
             {
                 if (EntityArray[i].Equals(_removeEntry))
                 {
-                    EntityArray[i] = new GameEntity("", i);
+                    EntityArray[i] = null;
                     return;
                 }
             }
-            Console.WriteLine("That entry does not exist.\n");
+            Console.WriteLine("\a\a\aThat entry does not exist.\n");
         }
 
         public GameEntity GetEntity(string _name)
         {
-            GameEntity returnNullEntity = new GameEntity();
-
             // Check each element of the array for the Name
             for (int i = 0; i < __maxEntities; i++)
             {
@@ -100,11 +98,12 @@ namespace GAM1516_Assignment_1
                     return EntityArray[i];
                 }
             }
-            Console.WriteLine("That entry does not exist.  Returning null entry.\n");
-            return returnNullEntity;
+            Console.WriteLine("\a\a\aThat entry does not exist.\n");
+            return null;
         }
         public GameEntity GetEntity(int _id)
         {
+            // Check each element of the array for the ID
             for (int i = 0; i < MaxEntities; i++)
             {
                 if (EntityArray[i].ID == _id)
@@ -113,36 +112,33 @@ namespace GAM1516_Assignment_1
                     return EntityArray[i];
                 }
             }
-            Console.WriteLine("That entry does not exist.  Returning null entry.\n");
-            return new GameEntity();
+            Console.WriteLine("\a\a\aThat entry does not exist.\n");
+            return null;
         }
 
         public void PrintAllEntities()
         {
             for (int i = 0; i < MaxEntities; i++)
             {
-                if (EntityArray[i].Name == null)
+                if (__entityArray[i] == null)
                 {
                     Console.WriteLine("NULL Entry");
                 }
                 else
                 {
-                    Console.Write(EntityArray[i].ToString());
+                    Console.Write(__entityArray[i].ToString());
                     Console.Write(" Layer: ");
-                    Console.Write(EntityArray[i].Layer);
+                    Console.Write(__entityArray[i].Layer);
                     Console.Write(" X Coord: ");
-                    Console.Write(EntityArray[i].Location.X);
+                    Console.Write(__entityArray[i].Location.X);
                     Console.Write(" Y Coord: ");
-                    Console.Write(EntityArray[i].Location.Y);
+                    Console.Write(__entityArray[i].Location.Y);
                     Console.Write(" Height: ");
-                    Console.Write(EntityArray[i].Dimension.Height);
+                    Console.Write(__entityArray[i].Dimension.Height);
                     Console.Write(" Width: ");
-                    Console.WriteLine(EntityArray[i].Dimension.Width);
+                    Console.WriteLine(__entityArray[i].Dimension.Width);
                 }
             }
-
-            Console.ReadKey();
-            Console.WriteLine("");
         }
         #endregion
     }

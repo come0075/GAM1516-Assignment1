@@ -79,11 +79,7 @@ namespace GAM1516_Assignment_1
         #region Constructors
             public GameEntity()
             {
-                this.__name = "";
-                this.__id = -1;
-                this.__layer = 1;
-                this.__location = new Position(0, 0);
-                this.__dimension = new Rectangle(10, 10);
+
             }
             public GameEntity(string _name, int _id)
                 : this()
@@ -131,10 +127,12 @@ namespace GAM1516_Assignment_1
         public virtual void Update(float deltaTime)
         {
             // Write to console the deltaTime value for now
+            Console.WriteLine(deltaTime);
         }
         public virtual void Draw(float deltaTime)
         {
             // Write to console the deltaTime value for now
+            Console.WriteLine(deltaTime);
         }
         #endregion
     }
